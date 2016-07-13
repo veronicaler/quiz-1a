@@ -1,3 +1,5 @@
+
+// Questions in array
 var questions = [{
   question: "What is the answer for 10*3/0?",
   choices: [10, 15, 30],
@@ -43,7 +45,7 @@ var questions = [{
 
 
 $(document).ready(function() {
-
+// lists of various
   var currQuestion = questions[currentQuestion()];
   var totalAnswerQuestion = 1;
   var player1Score = 0;
@@ -83,6 +85,7 @@ $(document).ready(function() {
     return totalAnswerQuestion === 10;
   }
 
+  //who won functions
   function whoWon() {
     //console.log(isGameOver());
     if (isGameOver() === false) {
@@ -107,11 +110,13 @@ $(document).ready(function() {
   }
 
   //============Add event listeners ============
-
+  //restart button
   $("#start").click(restart);
 
-  function switchPlayer(selectedChoice, Qn) {
-    if (selectedChoice == Qn.correctAnswer) {
+
+  //switch player
+  function switchPlayer(selectedChoice, qn) {
+    if (selectedChoice == qn.correctAnswer) {
       if (currPlayer === "player1") {
         player1Score += 1;
       } else {
@@ -119,7 +124,7 @@ $(document).ready(function() {
       }
     }
     console.log("choice is " + selectedChoice);
-    console.log("answer is " + Qn.correctAnswer);
+    console.log("answer is " + qn.correctAnswer);
 
     console.log("player 1 " + player1Score);
     console.log("player 2 " + player2Score);
@@ -132,6 +137,9 @@ $(document).ready(function() {
     document.getElementById('turn').innerHTML = currPlayer + " 's turn";
     showQuestion();
   }
+
+
+  //submit button
   $('#submit').click(function(event) {
     //did user select option
     if (selectedChoice === -1) {
@@ -145,6 +153,8 @@ $(document).ready(function() {
 
   });
 
+
+  // choices of answer
   function clickedChoice() {
     //unset all background color of answer buttons
     $('ol li button').css("background-color", "white");
@@ -155,6 +165,7 @@ $(document).ready(function() {
     console.log(selectedChoice);
   }
 
+  // display questions
   function showQuestion() {
     currQuestion = questions[currentQuestion()];
     $('#quiz').html('<h1>Question</h1>');
@@ -172,6 +183,7 @@ $(document).ready(function() {
     $(".choice").on("click", clickedChoice);
   }
 
+  //show question for first load
   showQuestion();
 
 
